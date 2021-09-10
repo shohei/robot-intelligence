@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <time.h>
+#include <cstdlib>
 
 
 int move(int a, int &x, int &y, int x_size);

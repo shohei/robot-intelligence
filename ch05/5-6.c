@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <cstdlib>
 
 int move(int a, int &x, int &y, int x_size);
 int xy2s(int x, int y, int x_size);

@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <time.h>
+#include <cstdlib>
 
 int select_action(int s, int num_a, double** Qtable);
 

@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <time.h>
+#include <cstdlib>
 
 double vending_machine(int s, int a, int &sd);
 double max_Qval(int s, int num_a, double** Qtable);
