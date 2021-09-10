@@ -6,15 +6,15 @@ void pairing(int num, int length, int **population, int **pair);
 
 int main()
 {
-	int **population;//ŒÂ‘ÌW‡
-	int **pair;//ŒÂ‘ÌW‡‚ğ•À‚×‘Ö‚¦Cã‚©‚ç‡‚ÉƒyƒA‚É‚µ‚½‚à‚Ì
-	int num;//ŒÂ‘Ì”
-	int length;//ˆâ“`q’·
+	int **population;//å€‹ä½“é›†åˆ
+	int **pair;//å€‹ä½“é›†åˆã‚’ä¸¦ã¹æ›¿ãˆï¼Œä¸Šã‹ã‚‰é †ã«ãƒšã‚¢ã«ã—ãŸã‚‚ã®
+	int num;//å€‹ä½“æ•°
+	int length;//éºä¼å­é•·
 	int i,j;
 	
 	num=10;
 	length=5;
-	//ŒÂ‘ÌW‡
+	//å€‹ä½“é›†åˆ
 	population=new int*[num];
 	for(i=0;i<num;i++){
 		population[i]=new int[length];
@@ -25,7 +25,7 @@ int main()
 		pair[i]=new int[length];
 	}
 
-	//—”‚Ì‰Šú‰»
+	//ä¹±æ•°ã®åˆæœŸåŒ–
 	srand( (unsigned)time( NULL ) );
 
 	for(i=0;i<num;i++){
@@ -49,34 +49,34 @@ int main()
 }
 
 void pairing(int num, int length, int **population, int **pair){
-	int *shuffle;//ŒÂ‘Ì”Ô†‚ğ‚¢‚êCƒVƒƒƒbƒtƒ‹‚·‚é‚½‚ß‚Ì”z—ñ
-	int r;//—”
+	int *shuffle;//å€‹ä½“ç•ªå·ã‚’ã„ã‚Œï¼Œã‚·ãƒ£ãƒƒãƒ•ãƒ«ã™ã‚‹ãŸã‚ã®é…åˆ—
+	int r;//ä¹±æ•°
 	int i,j;
 	int temp;
 
 	shuffle=new int[num];
-	//‰Šú‰»
+	//åˆæœŸåŒ–
 	for(i=0;i<num;i++){
 		shuffle[i]=i;
 	}
-	//ƒVƒƒƒbƒtƒ‹
+	//ã‚·ãƒ£ãƒƒãƒ•ãƒ«
 	for(i=0;i<num;i++){
         r=rand()%num;
 		temp=shuffle[r];
 		shuffle[r]=shuffle[i];
 		shuffle[i]=temp;
 	}
-	//shuffle‚ÌŠm”F
+	//shuffleã®ç¢ºèª
 	for(i=0;i<num;i++){
 		printf("shuffle[%d]=%d\n",i,shuffle[i]);
 	}
-	//population‚©‚çƒyƒA‚ğ‚Â‚­‚èpair‚ÉƒRƒs[
+	//populationã‹ã‚‰ãƒšã‚¢ã‚’ã¤ãã‚Špairã«ã‚³ãƒ”ãƒ¼
 	for(i=0;i<num;i++){
 		for(j=0;j<length;j++){
 			pair[i][j]=population[shuffle[i]][j];
 		}
 	}
-	//Šm”F
+	//ç¢ºèª
 	for(i=0;i<num;i++){
 		for(j=0;j<length;j++){
 			printf("%d ",population[i][j]);

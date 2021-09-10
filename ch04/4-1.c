@@ -4,20 +4,20 @@
 
 int main()
 {
-	int **population;//ŒÂ‘ÌW‡
-	int num;//ŒÂ‘Ì”
-	int length;//ˆâ“`q’·
+	int **population;//å€‹ä½“é›†åˆ
+	int num;//å€‹ä½“æ•°
+	int length;//éºä¼å­é•·
 	int i,j;
 	
 	num = 10;
 	length = 5;
-	//ŒÂ‘ÌW‡
+	//å€‹ä½“é›†åˆ
 	population = new int*[num];
 	for(i=0;i<num;i++){
 		population[i] = new int[length];
 	}
 
-	//—”‚Ì‰Šú‰»
+	//ä¹±æ•°ã®åˆæœŸåŒ–
 	srand( (unsigned)time( NULL ) );
 
 	for(i=0;i<num;i++){

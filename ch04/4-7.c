@@ -11,15 +11,15 @@ double average_fitness(int num, int *fitness);
 
 int main()
 {
-	int **population;//ŒÂ‘ÌW‡
-	int **pair;//ŒÂ‘ÌW‡‚ğ•À‚×‘Ö‚¦Cã‚©‚ç‡‚ÉƒyƒA‚É‚µ‚½‚à‚Ì
-	int num;//ŒÂ‘Ì”
-	int length;//ˆâ“`q’·
-	int *fitness;//“K‡“x
-	int generation;//¢‘ã
-	int max_generation;//i‰»‚ğI—¹‚·‚é¢‘ã
-	int crossover_rate;//Œğ³—¦[%]
-	int mutation_rate;//“Ë‘R•ÏˆÙ—¦[%]
+	int **population;//å€‹ä½“é›†åˆ
+	int **pair;//å€‹ä½“é›†åˆã‚’ä¸¦ã¹æ›¿ãˆï¼Œä¸Šã‹ã‚‰é †ã«ãƒšã‚¢ã«ã—ãŸã‚‚ã®
+	int num;//å€‹ä½“æ•°
+	int length;//éºä¼å­é•·
+	int *fitness;//é©åˆåº¦
+	int generation;//ä¸–ä»£
+	int max_generation;//é€²åŒ–ã‚’çµ‚äº†ã™ã‚‹ä¸–ä»£
+	int crossover_rate;//äº¤å‰ç‡[%]
+	int mutation_rate;//çªç„¶å¤‰ç•°ç‡[%]
 
 	int i,j;
 	
@@ -28,7 +28,7 @@ int main()
 	max_generation=20;
 	crossover_rate=50;
 	mutation_rate=5;
-	//ŒÂ‘ÌW‡
+	//å€‹ä½“é›†åˆ
 	population=new int*[num];
 	for(i=0;i<num;i++){
 		population[i]=new int[length];
@@ -38,13 +38,13 @@ int main()
 		pair[i]=new int[length];
 	}
 
-	//“K‰“x
+	//é©å¿œåº¦
 	fitness=new int[num];
 
-	//—”‚Ì‰Šú‰»
+	//ä¹±æ•°ã®åˆæœŸåŒ–
 	srand( (unsigned)time( NULL ) );
 	
-	//‰ŠúŒÂ‘Ì‚Ì¶¬
+	//åˆæœŸå€‹ä½“ã®ç”Ÿæˆ
 	for(i=0;i<num;i++){
 		for(j=0;j<length;j++){
 			population[i][j]=rand()%2;
@@ -52,34 +52,34 @@ int main()
 		}
 	}
 	
-	//i‰»ŠJn
+	//é€²åŒ–é–‹å§‹
 	for(generation=0;generation<max_generation;generation++){
 
 		printf("generation=%d\n",generation);
 							
-		//ƒyƒAƒŠƒ“ƒO
+		//ãƒšã‚¢ãƒªãƒ³ã‚°
         	pairing(num,length,population,pair);
 		
-		//Œğ³C“Ë‘R•ÏˆÙ
+		//äº¤å‰ï¼Œçªç„¶å¤‰ç•°
 		one_point_crossover(crossover_rate, mutation_rate, num,length,population, pair);
 
-		//“K‡“x‚ÌŒvZ
+		//é©åˆåº¦ã®è¨ˆç®—
 		for(i=0;i<num;i++){
 			fitness[i]=calc_fitness(i,length,population);
-			//Šm”F
+			//ç¢ºèª
 			for(j=0;j<length;j++){
 				printf("%d ",population[i][j]);
 			}
 			printf(" fitness = %d\n",fitness[i]);
 		}
 
-		//I—¹”»’è
+		//çµ‚äº†åˆ¤å®š
 		if(average_fitness(num,fitness)>45){
-			printf("–Ú•W“K‡“x‚É“’B‚µ‚½‚½‚ßI—¹‚µ‚Ü‚·\n");
+			printf("ç›®æ¨™é©åˆåº¦ã«åˆ°é”ã—ãŸãŸã‚çµ‚äº†ã—ã¾ã™\n");
 			break;
 		}
 
-		//ƒ‹[ƒŒƒbƒg‘I‘ğ
+		//ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆé¸æŠ
 		roulette_selection(num,length, population, fitness);	
 		
 	}
@@ -108,10 +108,10 @@ int calc_fitness(int individual, int length, int** population){
 void roulette_selection(int num, int length, int **population, int *fitness){
 	int i,j,k;
 	int sum_fitness;
-	int **new_population;//‘I‚Î‚ê‚½ŒÂ‘Ì‚ª“ü‚é
-	double *roulette;//‘I‘ğ‚³‚ê‚éŠm—¦‚ª“ü‚é
-	double *ac_roulette;//roulette‚ÌÏZ’l‚ª“ü‚é
-	double r;//ƒ‹[ƒŒƒbƒg‚Åg‚¤—”
+	int **new_population;//é¸ã°ã‚ŒãŸå€‹ä½“ãŒå…¥ã‚‹
+	double *roulette;//é¸æŠã•ã‚Œã‚‹ç¢ºç‡ãŒå…¥ã‚‹
+	double *ac_roulette;//rouletteã®ç©ç®—å€¤ãŒå…¥ã‚‹
+	double r;//ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆã§ä½¿ã†ä¹±æ•°
 
 	new_population=new int*[num];
 	for(i=0;i<num;i++){
@@ -121,13 +121,13 @@ void roulette_selection(int num, int length, int **population, int *fitness){
 	roulette=new double[num];
 	ac_roulette=new double[num];
 
-	//fitness‚Ì˜a‚ğ‹‚ß‚é
+	//fitnessã®å’Œã‚’æ±‚ã‚ã‚‹
 	sum_fitness=0;
 	for(i=0;i<num;i++){
 		sum_fitness=sum_fitness+fitness[i];
 	}
 	
-	//ƒ‹[ƒŒƒbƒg‚ğì‚é
+	//ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆã‚’ä½œã‚‹
 	roulette[0]=(double)fitness[0]/(double)sum_fitness;
 	ac_roulette[0]=roulette[0];
 	//printf("roulette[%d]=%lf ac_roulette[%d]=%lf \n",0,roulette[0],0,ac_roulette[0]);
@@ -138,7 +138,7 @@ void roulette_selection(int num, int length, int **population, int *fitness){
 
 	}
 
-	//ƒ‹[ƒŒƒbƒg‚ğg‚Á‚Ä‘I‘ğ‚·‚é
+	//ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆã‚’ä½¿ã£ã¦é¸æŠã™ã‚‹
 	for(i=0;i<num;i++){
 		r=(double)rand()/(double)RAND_MAX;
 		for(j=0;j<num;j++){
@@ -153,7 +153,7 @@ void roulette_selection(int num, int length, int **population, int *fitness){
 		}
 	}
 
-	//new_population‚ğpopulation‚ÉƒRƒs[
+	//new_populationã‚’populationã«ã‚³ãƒ”ãƒ¼
 	for(i=0;i<num;i++){
 		for(k=0;k<length;k++){
 			population[i][k]=new_population[i][k];
@@ -178,7 +178,7 @@ void one_point_crossover(int crossover_rate,int mutation_rate, int num, int leng
 	
 	for(i=0;i<(num-1);i=i+2){
 		if(rand()%100<crossover_rate){
-			//Œğ³Às
+			//äº¤å‰å®Ÿè¡Œ
 			cross_point=rand()%(length-1)+1;
 			//printf("cross_point=%d \n",cross_point);
 			for(j=0;j<cross_point;j++){
@@ -190,13 +190,13 @@ void one_point_crossover(int crossover_rate,int mutation_rate, int num, int leng
 				population[i+1][j]=pair[i+1][j];
 			}
 
-			//“Ë‘R•ÏˆÙÀs
+			//çªç„¶å¤‰ç•°å®Ÿè¡Œ
 			mutation(mutation_rate,length,i,population);
 			mutation(mutation_rate,length,i+1,population);
 
 		}
 		else{
-			//Œğ³‚ğs‚í‚¸C‚»‚Ì‚Ü‚ÜCpair‚ğpopulation‚ÉƒRƒs[
+			//äº¤å‰ã‚’è¡Œã‚ãšï¼Œãã®ã¾ã¾ï¼Œpairã‚’populationã«ã‚³ãƒ”ãƒ¼
 			for(j=0;j<length;j++){
 				population[i][j]=pair[i][j];
 				population[i+1][j]=pair[i+1][j];
@@ -218,34 +218,34 @@ void mutation(int mutation_rate, int length, int individual, int **population){
 
 
 void pairing(int num, int length, int **population, int **pair){
-	int *shuffle;//ŒÂ‘Ì”Ô†‚ğ‚¢‚êCƒVƒƒƒbƒtƒ‹‚·‚é‚½‚ß‚Ì”z—ñ
-	int r;//—”
+	int *shuffle;//å€‹ä½“ç•ªå·ã‚’ã„ã‚Œï¼Œã‚·ãƒ£ãƒƒãƒ•ãƒ«ã™ã‚‹ãŸã‚ã®é…åˆ—
+	int r;//ä¹±æ•°
 	int i,j;
 	int temp;
 
 	shuffle=new int[num];
-	//‰Šú‰»
+	//åˆæœŸåŒ–
 	for(i=0;i<num;i++){
 		shuffle[i]=i;
 	}
-	//ƒVƒƒƒbƒtƒ‹
+	//ã‚·ãƒ£ãƒƒãƒ•ãƒ«
 	for(i=0;i<num;i++){
         r=rand()%num;
 		temp=shuffle[r];
 		shuffle[r]=shuffle[i];
 		shuffle[i]=temp;
 	}
-	//shuffle‚ÌŠm”F
+	//shuffleã®ç¢ºèª
 	//for(i=0;i<num;i++){
 		//printf("shuffle[%d]=%d\n",i,shuffle[i]);
 	//}
-	//population‚©‚çƒyƒA‚ğ‚Â‚­‚èpair‚ÉƒRƒs[
+	//populationã‹ã‚‰ãƒšã‚¢ã‚’ã¤ãã‚Špairã«ã‚³ãƒ”ãƒ¼
 	for(i=0;i<num;i++){
 		for(j=0;j<length;j++){
 			pair[i][j]=population[shuffle[i]][j];
 		}
 	}
-	//Šm”F
+	//ç¢ºèª
 	/*for(i=0;i<num;i++){
 		for(j=0;j<length;j++){
 			printf("%d ",population[i][j]);

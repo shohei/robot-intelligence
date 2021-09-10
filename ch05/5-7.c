@@ -10,13 +10,13 @@ int epsilon_greedy(int epsilon,int s, int num_a, double** Qtable);
 
 int main()
 {
-	int x_size;//x²•ûŒü‚Ì–À˜H‚Ì‘å‚«‚³ix_size=10‚Ì‚É‚ÍCx‚Í0‚©‚ç9‚Ì’l‚ğ‚Æ‚é)
+	int x_size;//xè»¸æ–¹å‘ã®è¿·è·¯ã®å¤§ãã•ï¼ˆx_size=10ã®æ™‚ã«ã¯ï¼Œxã¯0ã‹ã‚‰9ã®å€¤ã‚’ã¨ã‚‹)
 	int y_size;
 	double alpha, gamma;
 	int x, y, x_init, y_init;
 	int **maze;
-	int num_step;//ˆês‚É‚¨‚¯‚éQ’l‚ÌXV‰ñ”
-	int num_trial;//s‰ñ”
+	int num_step;//ä¸€è©¦è¡Œã«ãŠã‘ã‚‹Qå€¤ã®æ›´æ–°å›æ•°
+	int num_trial;//è©¦è¡Œå›æ•°
 	int i,j;
 	int a,s,sd;
 	int num_a;
@@ -26,7 +26,7 @@ int main()
 	double Qmax;
 	int epsilon;
 	
-	//ƒpƒ‰ƒ[ƒ^‚Ìİ’è
+	//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®è¨­å®š
 	alpha=0.5;
 	gamma=0.9;
 	epsilon=10;
@@ -39,7 +39,7 @@ int main()
 	num_a=4;
 	num_s=x_size*y_size;
 
-	//—”‚Ì‰Šú‰»
+	//ä¹±æ•°ã®åˆæœŸåŒ–
 	srand( (unsigned)time( NULL ) );
 
 	//Q-table
@@ -48,7 +48,7 @@ int main()
 		Qtable[i]=new double[num_a];
 	}
 	
-	//Q-table‚Ì‰Šú‰»
+	//Q-tableã®åˆæœŸåŒ–
 	for(i=0;i<num_s;i++){
 		for(j=0;j<num_a;j++){
 			Qtable[i][j]=0;
@@ -56,13 +56,13 @@ int main()
 	}
 	
 
-	//–À˜H
+	//è¿·è·¯
 	maze=new int*[x_size];
 	for(i=0;i<x_size;i++){
 		maze[i]=new int[y_size];
 	}
 	
-	//–À˜H‚Ì‰Šú‰»i–À˜H‚Ìü‚è‚É•Ç‚ğİ’èj
+	//è¿·è·¯ã®åˆæœŸåŒ–ï¼ˆè¿·è·¯ã®å‘¨ã‚Šã«å£ã‚’è¨­å®šï¼‰
 	for(i=0;i<x_size;i++){
 		for(j=0;j<y_size;j++){
 			if(i==0 || j==0 || i==(x_size-1) || j==(y_size-1)){
@@ -74,7 +74,7 @@ int main()
 		}
 	}
 	
-	//•Ç‚Ìİ’è
+	//å£ã®è¨­å®š
 	maze[2][2]=-1;
 	maze[3][2]=-1;
 	maze[6][3]=-1;
@@ -85,7 +85,7 @@ int main()
 	maze[3][6]=-1;
 	maze[6][7]=-1;
 
-	//•ñV‚Ìİ’è
+	//å ±é…¬ã®è¨­å®š
 	maze[8][6]=10;
 	
 	for(i=0;i<x_size;i++){
@@ -95,12 +95,12 @@ int main()
 		printf("\n");
 	}
 
-	//‰Šúİ’è
+	//åˆæœŸè¨­å®š
 	x=x_init;
 	y=y_init;
 	s=xy2s(x,y,x_size);
 	
-	//ŠwKŠJn
+	//å­¦ç¿’é–‹å§‹
 	for(i=0;i<num_trial;i++){
 		printf("trial=%d\n",i);
 		for(j=0;j<num_step;j++){
@@ -111,23 +111,23 @@ int main()
 			Qtable[s][a]=(1 - alpha) * Qtable[s][a] + alpha * ((double)reward + gamma * Qmax);
 
 			if(reward<0){
-				//¸”s
+				//å¤±æ•—
 				x=x_init;
 				y=y_init;
 				s=xy2s(x,y,x_size);
-				printf("¸”s\n");
+				printf("å¤±æ•—\n");
 				break;
 			}
 			else if(reward>0){
-				//¬Œ÷
+				//æˆåŠŸ
 				x=x_init;
 				y=y_init;
 				s=xy2s(x,y,x_size);
-				printf("¬Œ÷\n");
+				printf("æˆåŠŸ\n");
 				break;
 			}
 			else{
-				//‘±s
+				//ç¶šè¡Œ
 				s=sd;
 			}
 		}
@@ -218,12 +218,12 @@ double max_Qval(int s, int num_a, double** Qtable){
 int epsilon_greedy(int epsilon, int s, int num_a, double** Qtable){
 	int a;
 	if(epsilon > rand()%100){
-		//–³ìˆ×‚És“®‚ğ‘I‘ğ
+		//ç„¡ä½œç‚ºã«è¡Œå‹•ã‚’é¸æŠ
 		a=rand()%num_a;
-		//printf("–³ìˆ×‚É‘I‘ğ\n");
+		//printf("ç„¡ä½œç‚ºã«é¸æŠ\n");
 	}
 	else{
-		//Å‘å‚Ì‚p’l‚ğ‚Âs“®‚ğ‘I‘ğ
+		//æœ€å¤§ã®ï¼±å€¤ã‚’æŒã¤è¡Œå‹•ã‚’é¸æŠ
 		a=select_action(s,num_a,Qtable);
 	}
 	return a;

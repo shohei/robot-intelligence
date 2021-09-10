@@ -10,7 +10,7 @@ int main()
 	int i,j;
 	int a;
 
-	//—”‚Ì‰Šú‰»
+	//ä¹±æ•°ã®åˆæœŸåŒ–
 	srand( (unsigned)time( NULL ) );
 
 

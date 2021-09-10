@@ -7,28 +7,28 @@ int calc_fitness(int individual, int length, int** population);
 int main()
 {
 	
-	int **population;//ŒÂ‘ÌW‡
-	int num;//ŒÂ‘Ì”
-	int length;//ˆâ“`q’·
-	int *fitness;//“K‡“x 
+	int **population;//å€‹ä½“é›†åˆ
+	int num;//å€‹ä½“æ•°
+	int length;//éºä¼å­é•·
+	int *fitness;//é©åˆåº¦ 
 
 	int i,j;
 	
 
 	num=10;
 	length=5;
-	//ŒÂ‘ÌW‡
+	//å€‹ä½“é›†åˆ
 	population=new int*[num];
 	for(i=0;i<num;i++){
 		population[i]=new int[length];
 	}
-	//“K‰“x
+	//é©å¿œåº¦
 	fitness=new int[num];
 
-	//—”‚Ì‰Šú‰»
+	//ä¹±æ•°ã®åˆæœŸåŒ–
 	srand( (unsigned)time( NULL ) );
 	
-	//‰ŠúŒÂ‘Ì‚Ì¶¬
+	//åˆæœŸå€‹ä½“ã®ç”Ÿæˆ
 	for(i=0;i<num;i++){
 		for(j=0;j<length;j++){
 			population[i][j]=rand()%2;

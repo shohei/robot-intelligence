@@ -11,7 +11,7 @@ int main()
 	int i,j;
 	int a;
 
-	//—”‚Ì‰Šú‰»
+	//ä¹±æ•°ã®åˆæœŸåŒ–
 	srand( (unsigned)time( NULL ) );
 
 	num_a=5;
@@ -78,14 +78,14 @@ int select_action(int s, int num_a, double** Qtable){
 int epsilon_greedy(int epsilon, int s, int num_a, double** Qtable){
 	int a;
 	if(epsilon > rand()%100){
-		//–³ìˆ×‚És“®‚ğ‘I‘ğ
+		//ç„¡ä½œç‚ºã«è¡Œå‹•ã‚’é¸æŠ
 		a=rand()%num_a;
-		printf("–³ìˆ×‚É‘I‘ğ\n");
+		printf("ç„¡ä½œç‚ºã«é¸æŠ\n");
 	}
 	else{
-		//Å‘å‚Ì‚p’l‚ğ‚Âs“®‚ğ‘I‘ğ
+		//æœ€å¤§ã®ï¼±å€¤ã‚’æŒã¤è¡Œå‹•ã‚’é¸æŠ
 		a=select_action(s,num_a,Qtable);
-		printf("Å‘å’l‚ğ‚Æ‚és“®‚ğ‘I‘ğ\n");
+		printf("æœ€å¤§å€¤ã‚’ã¨ã‚‹è¡Œå‹•ã‚’é¸æŠ\n");
 	}
 	return a;
 }

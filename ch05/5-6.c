@@ -5,7 +5,7 @@ int xy2s(int x, int y, int x_size);
 
 int main()
 {
-	int x_size=10;//xО▓Х√М№В╠Ц└ШHВ╠СхВлВ│Бix_size=10В╠ОЮВ╔В═БCxВ═0ВйВч9В╠ТlВЁВ╞Вщ)
+	int x_size=10;//xш╗╕цЦ╣хРСуБош┐╖ш╖пуБохдзуБНуБХя╝Иx_size=10уБоцЩВуБлуБпя╝МxуБп0уБЛуВЙ9уБохАдуВТуБиуВЛ)
 	int y_size=9;
 	int **maze;
 	int i,j;
@@ -15,7 +15,7 @@ int main()
 		maze[i]=new int[y_size];
 	}
 	
-	//Ц└ШHВ╠ПЙК·Й╗БiЦ└ШHВ╠О№ВшВ╔Х╟ВЁР▌ТшБj
+	//ш┐╖ш╖пуБохИЭцЬЯхМЦя╝Иш┐╖ш╖пуБохСиуВКуБлхгБуВТшинхоЪя╝Й
 	for(i=0;i<x_size;i++){
 		for(j=0;j<y_size;j++){
 			if(i==0 || j==0 || i==(x_size-1) || j==(y_size-1)){
@@ -27,7 +27,7 @@ int main()
 		}
 	}
 	
-	//Х╟В╠Р▌Тш
+	//хгБуБошинхоЪ
 	maze[2][2]=-1;
 	maze[3][2]=-1;
 	maze[6][3]=-1;
@@ -38,7 +38,7 @@ int main()
 	maze[3][6]=-1;
 	maze[6][7]=-1;
 
-	//ХёПVВ╠Р▌Тш
+	//ха▒щЕмуБошинхоЪ
 	maze[8][6]=10;
 	
 	for(i=0;i<x_size;i++){
@@ -63,19 +63,19 @@ int main()
 	x=1;
 	y=1;
 	
-	//ЙE
+	//хП│
 	a=0;
 	sd = move(a,x,y,x_size);
 	printf("x=%d,y=%d,sd=%d\n",x,y,sd);
-	//Й║
+	//ф╕Л
 	a=1;
 	sd = move(a,x,y,x_size);
 	printf("x=%d,y=%d,sd=%d\n",x,y,sd);
-	//Н╢
+	//х╖ж
 	a=2;
 	sd = move(a,x,y,x_size);
 	printf("x=%d,y=%d,sd=%d\n",x,y,sd);
-	//Пу
+	//ф╕К
 	a=3;
 	sd = move(a,x,y,x_size);
 	printf("x=%d,y=%d,sd=%d\n",x,y,sd);

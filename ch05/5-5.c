@@ -10,32 +10,32 @@ int epsilon_greedy(int epsilon,int s, int num_a, double** Qtable);
 int main()
 {
 	double **Qtable; //Qtable
-	double Q_max=0;//‚p’l‚ÌÅ‘å’l
-	double reward=0; //•ñV
-	double alpha=0.5;//ŠwKŒW”
-	double gamma=0.9;//Œ¸ŠŒW”
-	int epsilon=10;//s“®‚ğ–³ìˆ×‚É‘I‚ÔŠm—¦[%]
-	int trial_max=100;//s‰ñ”
-	//int step_max=10;//ˆês‚É‚¨‚¢‚Äs“®‚ğ‘I‘ğ‚·‚é‰ñ”
-	int num_a=2;//s“®‚Ì”
-	int num_s=2;//ó‘Ô‚Ì”
-	int a=0;//s“®
-	int s=0;//ó‘Ô
-	int sd=0;//s“®‚ÌÀs‚É‚æ‚Á‚Ä‘JˆÚ‚·‚éó‘Ô
+	double Q_max=0;//ï¼±å€¤ã®æœ€å¤§å€¤
+	double reward=0; //å ±é…¬
+	double alpha=0.5;//å­¦ç¿’ä¿‚æ•°
+	double gamma=0.9;//æ¸›è¡°ä¿‚æ•°
+	int epsilon=10;//è¡Œå‹•ã‚’ç„¡ä½œç‚ºã«é¸ã¶ç¢ºç‡[%]
+	int trial_max=100;//è©¦è¡Œå›æ•°
+	//int step_max=10;//ä¸€è©¦è¡Œã«ãŠã„ã¦è¡Œå‹•ã‚’é¸æŠã™ã‚‹å›æ•°
+	int num_a=2;//è¡Œå‹•ã®æ•°
+	int num_s=2;//çŠ¶æ…‹ã®æ•°
+	int a=0;//è¡Œå‹•
+	int s=0;//çŠ¶æ…‹
+	int sd=0;//è¡Œå‹•ã®å®Ÿè¡Œã«ã‚ˆã£ã¦é·ç§»ã™ã‚‹çŠ¶æ…‹
 	int i,j;
 	
 	
-	//—”‚Ì‰Šú‰»
+	//ä¹±æ•°ã®åˆæœŸåŒ–
 	srand( (unsigned)time( NULL ) );
 
 
-	//ƒƒ‚ƒŠ[‹óŠÔ‚ÌŠm•Û
+	//ãƒ¡ãƒ¢ãƒªãƒ¼ç©ºé–“ã®ç¢ºä¿
 	Qtable=new double*[num_s];
 	for(i=0;i<num_s;i++){
 		Qtable[i]=new double[num_a];
 	}
 
-	//Q’l‚Ì‰Šú‰»
+	//Qå€¤ã®åˆæœŸåŒ–
 	for(i=0;i<num_s;i++){
 		for(j=0;j<num_a;j++){
 			Qtable[i][j]=0;
@@ -44,27 +44,27 @@ int main()
 	}
 
 	
-	//sŠJn
+	//è©¦è¡Œé–‹å§‹
 	for(i=0;i<trial_max;i++){
 	
-		//s“®‚Ì‘I‘ğ
+		//è¡Œå‹•ã®é¸æŠ
 		a=epsilon_greedy(epsilon,s,num_a,Qtable);
-		//s“®‚ÌÀs
+		//è¡Œå‹•ã®å®Ÿè¡Œ
 		reward=vending_machine(s,a,sd);
-		//sd‚É‚¨‚¯‚é‚p’l‚ÌÅ‘å’l‚ğ‹‚ß‚é
+		//sdã«ãŠã‘ã‚‹ï¼±å€¤ã®æœ€å¤§å€¤ã‚’æ±‚ã‚ã‚‹
 		Q_max=max_Qval(sd,num_a,Qtable);
-		//‚p’l‚ÌXV
+		//ï¼±å€¤ã®æ›´æ–°
 		Qtable[s][a]=(1 - alpha) * Qtable[s][a] + alpha * (reward + gamma * Q_max);
 		s=sd;
 
 		printf("i=%d\n",i);
 		if(reward>0){
-           		 printf("¬Œ÷\n",a);
+           		 printf("æˆåŠŸ\n",a);
 		}
 	
 	}
 	
-	//Qtable‚Ì•\¦
+	//Qtableã®è¡¨ç¤º
 	for(i=0;i<num_s;i++){
 		for(j=0;j<num_a;j++){
 			printf("%lf ",Qtable[i][j]);
@@ -74,7 +74,7 @@ int main()
 	
 
 
-	//ƒƒ‚ƒŠ[‹óŠÔ‚ÌŠJ•ú
+	//ãƒ¡ãƒ¢ãƒªãƒ¼ç©ºé–“ã®é–‹æ”¾
 	for(i=0;i<num_s;i++){
 		delete[] Qtable[i];
 	}
@@ -152,14 +152,14 @@ int select_action(int s, int num_a, double** Qtable){
 int epsilon_greedy(int epsilon, int s, int num_a, double** Qtable){
 	int a;
 	if(epsilon > rand()%100){
-		//–³ìˆ×‚És“®‚ğ‘I‘ğ
+		//ç„¡ä½œç‚ºã«è¡Œå‹•ã‚’é¸æŠ
 		a=rand()%num_a;
-		//printf("–³ìˆ×‚É‘I‘ğ\n");
+		//printf("ç„¡ä½œç‚ºã«é¸æŠ\n");
 	}
 	else{
-		//Å‘å‚Ì‚p’l‚ğ‚Âs“®‚ğ‘I‘ğ
+		//æœ€å¤§ã®ï¼±å€¤ã‚’æŒã¤è¡Œå‹•ã‚’é¸æŠ
 		a=select_action(s,num_a,Qtable);
-		//printf("Å‘å’l‚ğ‚Æ‚és“®‚ğ‘I‘ğ\n");
+		//printf("æœ€å¤§å€¤ã‚’ã¨ã‚‹è¡Œå‹•ã‚’é¸æŠ\n");
 	}
 	return a;
 }

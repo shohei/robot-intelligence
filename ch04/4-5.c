@@ -6,17 +6,17 @@ void one_point_crossover(int crossover_rate,int num, int length, int **populatio
 
 int main()
 {
-	int **population;//ŒÂ‘ÌW‡
-	int **pair;//ŒÂ‘ÌW‡‚ğ•À‚×‘Ö‚¦Cã‚©‚ç‡‚ÉƒyƒA‚É‚µ‚½‚à‚Ì
-	int num;//ŒÂ‘Ì”
-	int length;//ˆâ“`q’·
-	int crossover_rate; //“Ë‘R•ÏˆÙ—¦[%]
+	int **population;//å€‹ä½“é›†åˆ
+	int **pair;//å€‹ä½“é›†åˆã‚’ä¸¦ã¹æ›¿ãˆï¼Œä¸Šã‹ã‚‰é †ã«ãƒšã‚¢ã«ã—ãŸã‚‚ã®
+	int num;//å€‹ä½“æ•°
+	int length;//éºä¼å­é•·
+	int crossover_rate; //çªç„¶å¤‰ç•°ç‡[%]
 	int i,j;
 	
 	num=10;
 	length=5;
 	crossover_rate=50;
-	//ŒÂ‘ÌW‡
+	//å€‹ä½“é›†åˆ
 	population=new int*[num];
 	for(i=0;i<num;i++){
 		population[i]=new int[length];
@@ -28,10 +28,10 @@ int main()
 	}
 
 	
-	//—”‚Ì‰Šú‰»
+	//ä¹±æ•°ã®åˆæœŸåŒ–
 	srand( (unsigned)time( NULL ) );
 	
-	//ƒeƒXƒg—p‚É‰ŠúŒÂ‘Ì‚ğ‘S‚Ä‚O‚Éİ’è
+	//ãƒ†ã‚¹ãƒˆç”¨ã«åˆæœŸå€‹ä½“ã‚’å…¨ã¦ï¼ã«è¨­å®š
 	printf("population=\n");
 	for(i=0;i<num;i++){
 		for(j=0;j<length;j++){
@@ -40,7 +40,7 @@ int main()
 		}
 		printf("\n");
 	}
-	//ƒeƒXƒg—p‚Épair‚ğİ’èi‹ô””Ô–Ú‚ÌŒÂ‘Ì‚Í‚É‚Í‘S‚Ä‚O‚ğCŠï””Ô–Ú‚ÌŒÂ‘Ì‚É‚Í‘S‚Ä‚P‚ğİ’è
+	//ãƒ†ã‚¹ãƒˆç”¨ã«pairã‚’è¨­å®šï¼ˆå¶æ•°ç•ªç›®ã®å€‹ä½“ã¯ã«ã¯å…¨ã¦ï¼ã‚’ï¼Œå¥‡æ•°ç•ªç›®ã®å€‹ä½“ã«ã¯å…¨ã¦ï¼‘ã‚’è¨­å®š
 	printf("pair=\n");
 	for(i=0;i<num;i++){
 		for(j=0;j<length;j++){
@@ -52,7 +52,7 @@ int main()
 
 	one_point_crossover(crossover_rate,num,length,population, pair);
 	
-	//Šm”F
+	//ç¢ºèª
 	printf("population=\n");
 	for(i=0;i<num;i++){
 		for(j=0;j<length;j++){
@@ -77,7 +77,7 @@ void one_point_crossover(int crossover_rate,int num, int length, int **populatio
 	
 	for(i=0;i<(num-1);i=i+2){
 		if(rand()%100 < crossover_rate){
-			//Œğ³Às
+			//äº¤å‰å®Ÿè¡Œ
 			cross_point=rand()%(length-1)+1;
 			printf("cross_point=%d \n",cross_point);
 			for(j=0;j<cross_point;j++){
@@ -91,7 +91,7 @@ void one_point_crossover(int crossover_rate,int num, int length, int **populatio
 
 		}
 		else{
-			//Œğ³‚ğs‚í‚¸C‚»‚Ì‚Ü‚ÜCpair‚ğpopulation‚ÉƒRƒs[
+			//äº¤å‰ã‚’è¡Œã‚ãšï¼Œãã®ã¾ã¾ï¼Œpairã‚’populationã«ã‚³ãƒ”ãƒ¼
 			for(j=0;j<length;j++){
 				population[i][j]=pair[i][j];
 				population[i+1][j]=pair[i+1][j];

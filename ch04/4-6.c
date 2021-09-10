@@ -8,28 +8,28 @@ void roulette_selection(int num, int length, int** population, int *fitness);
 
 int main()
 {
-	int **population;//ŒÂ‘ÌW‡
-	int num;//ŒÂ‘Ì”
-	int length;//ˆâ“`q’·
-	int *fitness;//“K‰“x 
+	int **population;//å€‹ä½“é›†åˆ
+	int num;//å€‹ä½“æ•°
+	int length;//éºä¼å­é•·
+	int *fitness;//é©å¿œåº¦ 
 
 	int i,j,k;
 	
 	num=10;
 	length=5;
 
-	//ŒÂ‘ÌW‡
+	//å€‹ä½“é›†åˆ
 	population=new int*[num];
 	for(i=0;i<num;i++){
 		population[i]=new int[length];
 	}
 
-	//“K‡“x
+	//é©åˆåº¦
 	fitness=new int[num];
 
-	//—”‚Ì‰Šú‰»
+	//ä¹±æ•°ã®åˆæœŸåŒ–
 	srand( (unsigned)time( NULL ) );
-	//‰ŠúŒÂ‘Ì‚Ì¶¬
+	//åˆæœŸå€‹ä½“ã®ç”Ÿæˆ
 	for(i=0;i<num;i++){
 		for(j=0;j<length;j++){
 			population[i][j]=rand()%2;
@@ -73,11 +73,11 @@ int calc_fitness(int individual, int length, int** population){
 
 void roulette_selection(int num, int length, int **population, int *fitness){
 	int i,j,k;
-	int sum_fitness;//“K‰“x‚Ì˜a‚ª“ü‚é
-	int **new_population;//‘I‚Î‚ê‚½ŒÂ‘Ì‚ª“ü‚é
-	double *roulette;//‘I‘ğ‚³‚ê‚éŠm—¦‚ª“ü‚é
-	double *ac_roulette;//roulette‚ÌÏZ’l‚ª“ü‚é
-	double r;//ƒ‹[ƒŒƒbƒg‚Åg‚¤—”
+	int sum_fitness;//é©å¿œåº¦ã®å’ŒãŒå…¥ã‚‹
+	int **new_population;//é¸ã°ã‚ŒãŸå€‹ä½“ãŒå…¥ã‚‹
+	double *roulette;//é¸æŠã•ã‚Œã‚‹ç¢ºç‡ãŒå…¥ã‚‹
+	double *ac_roulette;//rouletteã®ç©ç®—å€¤ãŒå…¥ã‚‹
+	double r;//ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆã§ä½¿ã†ä¹±æ•°
 
 	new_population=new int*[num];
 	for(i=0;i<num;i++){
@@ -87,13 +87,13 @@ void roulette_selection(int num, int length, int **population, int *fitness){
 	roulette=new double[num];
 	ac_roulette=new double[num];
 
-	//fitness‚Ì˜a‚ğ‹‚ß‚é
+	//fitnessã®å’Œã‚’æ±‚ã‚ã‚‹
 	sum_fitness=0;
 	for(i=0;i<num;i++){
 		sum_fitness=sum_fitness+fitness[i];
 	}
 	
-	//ƒ‹[ƒŒƒbƒg‚ğì‚é
+	//ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆã‚’ä½œã‚‹
 	roulette[0]=(double)fitness[0]/(double)sum_fitness;
 	ac_roulette[0]=roulette[0];
 	printf("roulette[%d]=%lf ac_roulette[%d]=%lf \n",0,roulette[0],0,ac_roulette[0]);
@@ -104,7 +104,7 @@ void roulette_selection(int num, int length, int **population, int *fitness){
 
 	}
 
-	//ƒ‹[ƒŒƒbƒg‚ğg‚Á‚Ä‘I‘ğ‚·‚é
+	//ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆã‚’ä½¿ã£ã¦é¸æŠã™ã‚‹
 	for(i=0;i<num;i++){
 		r=(double)rand()/(double)RAND_MAX;
 		for(j=0;j<num;j++){
@@ -118,7 +118,7 @@ void roulette_selection(int num, int length, int **population, int *fitness){
 		}
 	}
 
-	//new_population‚ğpopulation‚ÉƒRƒs[
+	//new_populationã‚’populationã«ã‚³ãƒ”ãƒ¼
 	for(i=0;i<num;i++){
 		for(k=0;k<length;k++){
 			population[i][k]=new_population[i][k];

@@ -7,25 +7,25 @@ void mutation(int mutation_rate, int length, int individual, int **population);
 int main()
 {
 	
-	int **population;//ŒÂ‘ÌW‡
-	int num;//ŒÂ‘Ì”
-	int length;//ˆâ“`q’·
-	int mutation_rate; //“Ë‘R•ÏˆÙŠm—¦[%]
+	int **population;//å€‹ä½“é›†åˆ
+	int num;//å€‹ä½“æ•°
+	int length;//éºä¼å­é•·
+	int mutation_rate; //çªç„¶å¤‰ç•°ç¢ºç‡[%]
 	int i,j;
 	
 	num=10;
 	length=5;
 	mutation_rate=50;
-	//ŒÂ‘ÌW‡
+	//å€‹ä½“é›†åˆ
 	population=new int*[num];
 	for(i=0;i<num;i++){
 		population[i]=new int[length];
 	}
 
-	//—”‚Ì‰Šú‰»
+	//ä¹±æ•°ã®åˆæœŸåŒ–
 	srand( (unsigned)time( NULL ) );
 	
-	//ƒeƒXƒg—p‚É‰ŠúŒÂ‘Ì‚ğİ’è
+	//ãƒ†ã‚¹ãƒˆç”¨ã«åˆæœŸå€‹ä½“ã‚’è¨­å®š
 	printf("population=\n");
 	for(i=0;i<num;i++){
 		for(j=0;j<length;j++){
@@ -35,12 +35,12 @@ int main()
 		printf("\n");
 	}
 	
-	//“Ë‘R•ÏˆÙ
+	//çªç„¶å¤‰ç•°
 	for(i=0;i<num;i++){
 		mutation(mutation_rate,length,i,population);
 	}
 	
-	//Šm”F
+	//ç¢ºèª
 	printf("population=\n");
 	for(i=0;i<num;i++){
 		for(j=0;j<length;j++){
